@@ -1,0 +1,52 @@
+	miid - Monitor the link state of Ethernet devices and attempt to
+	bring up or down the interface when the link state changes.
+
+I have a laptop with a built in Ethernet controller.  Sometimes it is plugged
+into the Ethernet, sometimes it isn't.  Instead of trying to bring up the
+interface every boot, just in case I am on a local network, I've opted to
+bring it up manually when I actually do have a network connection.  It has
+occurred to me though that the MII on the Ethernet controller knows well
+enough when it has link state, so why don't I get it to do the job for me?
+
+To get it working, put miid somewhere in your startup scripts.  Run
+`miid --help` to find out the arguments.  Eventually, I might even write
+a manpage.  You should be able to invoke a copy for each interface you
+want to monitor.  Then, modify the rest of your networking setup so that
+the devices you are monitoring aren't brought up automatically at boot.
+
+(For example, in Debian, edit /etc/network/interfaces and remove the
+"auto <dev>" directive.)
+
+Next time you boot, plug in your network cable and the interface will brought
+up.  Unplug the network cable and the interface will be brought back down
+again.  Neat, huh?
+
+Of course, this all assumes your Ethernet controller works with the
+MII code in Linux. :-)  It works on my Sony Vaio, with the Intel ICH2
+chipset.  I have reports of it hanging Apple TiBooks. :-)
+
+The mii-reading code was inspired by Donald Becker's mii-diag (which you
+can find at http://www.scyld.com/diag/index.html#mii-diag).
+
+The obligitary copyright notice is below.  The only thing I'd ask is that if
+you use this and find it useful, let me know.  I require validation. :-)
+
+  Copyright (C) 2002 Graeme Mathieson
+
+  miid is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+Comments are welcome.
+
+	- Graeme Mathieson <mathie@wossname.org.uk>

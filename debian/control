@@ -1,0 +1,12 @@
+Source: miid
+Section: unknown
+Priority: optional
+Maintainer: Graeme Mathieson <mathie@wossname.org.uk>
+Build-Depends: debhelper (>> 3.0.0)
+Standards-Version: 3.5.2
+
+Package: miid
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: <insert up to 60 chars description>
+ <insert long description, indented with spaces>
